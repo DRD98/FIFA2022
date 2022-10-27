@@ -68,7 +68,7 @@ WSGI_APPLICATION = 'fifa2022.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'event2022',  
+        'NAME': 'events2022',  
         'USER': 'root',  
         'PASSWORD': 'whocares@MySQL98!',  
         'HOST': '127.0.0.1',  

@@ -4,9 +4,10 @@ from .models import Fixture
 from django.http import JsonResponse
 from rest_framework.views import APIView
 from fifa2022.settings import SECRET_KEY
-from .serializers import EventSerializer, TeamSerializer, FixtureSerializer, ViewFixtureSerializer
+from rest_framework.permissions import IsAdminUser
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
+from .serializers import EventSerializer, TeamSerializer, FixtureSerializer, ViewFixtureSerializer, QuestionSerializer
 
 
 class createeventview(APIView):
@@ -16,7 +17,7 @@ class createeventview(APIView):
 
     def post (self, request):
         print(request.data)
-        serializer = EventSerializer(data=request.data)
+        serializer = EventSerializer(data = request.data)
         if serializer.is_valid():
         # serializer.is_valid()
             # print ("\n\n", serializer.data, "\n\n")
@@ -34,7 +35,7 @@ class createteamview(APIView):
 
     def post (self, request):
         print(request.data)
-        serializer = TeamSerializer(data=request.data)
+        serializer = TeamSerializer(data = request.data)
         if serializer.is_valid():
         # serializer.is_valid()
             # print ("\n\n", serializer.data, "\n\n")
@@ -92,4 +93,23 @@ class userfixtureview(APIView):
             serializer = ViewFixtureSerializer(student, many = True)
             return JsonResponse ({"Status" : "Successful", "Data ": serializer.data})
         # serializer.valid()
+        return JsonResponse ({"Status" : "Unsuccessful"})
+
+
+class createquestionview(APIView):
+
+    # authenticaton_classes = ( JWTAuthentication, )
+    # permission_classes = ( IsAdminUser, IsAuthenticated, )
+
+    def post (self, request):
+        print(request.data)
+        serializer = QuestionSerializer(data = request.data)
+        print ("\n\n Outside is_valid() \n\n")
+        if serializer.is_valid():
+        # serializer.is_valid()
+            print ("\n\n Inside is_valid() \n\n")
+            serializer.save()
+            # print ("\n\n", serializer.data, "\n\n")
+            return JsonResponse ({"Status" : "Successful"})
+        # print ("\n\n", serializer.data, "\n\n")
         return JsonResponse ({"Status" : "Unsuccessful"})
