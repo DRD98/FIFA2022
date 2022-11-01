@@ -1,4 +1,4 @@
-from .models import Event, Teams, Fixture, UserQuestions
+from .models import Event, Teams, UserQuestions, temp#, Fixture
 # from django.contrib.auth.hashers import make_password
 from rest_framework import serializers
 
@@ -10,7 +10,7 @@ class EventSerializer(serializers.ModelSerializer):
         # fields = ('event_name', 'start_date', 'description', 'venue', 'status')
         # fields = '__all__'
         model = Event
-        fields = ('event_name', 'start_date', 'end_date', 'description', 'venue', 'status')
+        fields = ('eventName', 'startDate', 'endDate', 'description', 'venue', 'eStatus')
         
 
 # used in the creation of Team Table
@@ -19,24 +19,24 @@ class TeamSerializer(serializers.ModelSerializer):
     class Meta:
 
         model = Teams
-        fields = ('team_id', 'group', 'name', 'coach', 'status')
+        fields = ('teamId', 'group', 'name', 'coach', 'tStatus')
 
 
 #used in the creation of Fixture Table
-class FixtureSerializer(serializers.ModelSerializer):
+# class FixtureSerializer(serializers.ModelSerializer):
     
-    class Meta:
+#     class Meta:
 
-        model = Fixture
-        fields = ('start_time', 'team_A', 'team_B', 'venue', )
+#         model = Fixture
+#         fields = ('startTime', 'teamA', 'teamB', 'venue', )
 
 
-class ViewFixtureSerializer(FixtureSerializer):
+# class ViewFixtureSerializer(FixtureSerializer):
     
-    class Meta:
+#     class Meta:
 
-        model = Fixture
-        fields = ('match_id', 'start_time', 'team_A', 'team_B', 'venue')
+#         model = Fixture
+#         fields = ('matchId', 'startTime', 'teamA', 'teamB', 'venue')
 
 
 class QuestionSerializer(serializers.ModelSerializer):
@@ -44,4 +44,12 @@ class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
 
         model = UserQuestions
-        fields = ('match_id', 'question', 'op1', 'op2', 'op3', 'point', 'q_type' )
+        fields = ('matchId', 'question', 'op1', 'op2', 'op3', 'point', 'qType' )
+
+
+class TempSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+
+        model = temp
+        fields = ('question', 'grade' )

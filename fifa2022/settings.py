@@ -28,7 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'fifa22_app',
-    'rest_framework_simplejwt',
+    # 'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
@@ -68,7 +68,7 @@ WSGI_APPLICATION = 'fifa2022.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'events2022',  
+        'NAME': 'fifa22',  
         'USER': 'root',  
         'PASSWORD': 'whocares@MySQL98!',  
         'HOST': '127.0.0.1',  
@@ -123,7 +123,7 @@ USE_L10N = False
 # DATE_INPUT_FORMATS = ['%d-%m-%Y']
 DATE_INPUT_FORMAT = ['%m/%d/%Y']
 
-USE_I18N = False
+# USE_I18N = False
 
 # REST_FRAMEWORK = {
 #     'DEFAULT_AUTHENTICATION_CLASSES': [
